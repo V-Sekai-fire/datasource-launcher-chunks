@@ -10,8 +10,15 @@ client whatever version it is coming from.
 
 ## Use
 
+Fetch through a CDN that mirrors GitHub, not from raw, which is rate-limited and
+is not a CDN:
+
     central-launcher update <index> <dest> <seed> \
-      https://raw.githubusercontent.com/V-Sekai-fire/datasource-launcher-chunks/main/main/store
+      https://cdn.jsdelivr.net/gh/V-Sekai-fire/datasource-launcher-chunks@main/main/store
+
+`cdn.statically.io/gh/...` and `raw.githack.com/...` serve the same bytes and
+are the fallbacks. Measured: all three return an identical 111,894-byte chunk,
+and an update through jsDelivr completes in about a second.
 
 `v1.caibx` and `v2.caibx` are fixtures: two 20 MB payloads differing by one
 byte. Extracting v2 with v1 as the seed takes 294 of 295 chunks from the seed
