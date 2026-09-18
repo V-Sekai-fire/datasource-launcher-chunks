@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use this data, please cite it as below."
+title: "datasource-launcher-chunks"
+abstract: "Content-addressed chunk store for central-launcher payload updates, served as static files so any CDN that mirrors GitHub is a delivery path."
+authors:
+  - family-names: "Lee"
+    given-names: "K. S. Ernest (iFire)"
+    email: "ernest.lee@chibifire.com"
+license: MIT
+repository-code: "https://github.com/V-Sekai-fire/datasource-launcher-chunks"
+date-released: 2026-09-18
+references:
+  - type: software
+    title: "desync"
+    version: "1.1.4"
+    license: BSD-3-Clause
+    repository-code: "https://github.com/folbricht/desync"
+    notes: "The chunk and index format. Chunks are content-addressed, so the store is ordinary static files."
