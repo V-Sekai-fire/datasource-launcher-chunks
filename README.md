@@ -1,25 +1,19 @@
-# launcher-chunks
+# datasource-launcher-chunks
 
-Content-addressed chunk store for central-launcher payload updates, served as static files.
-
-A [desync](https://github.com/folbricht/desync) store is a directory of chunks
-named by their hash, so any static file host is one. A client holding an older
-payload reuses the chunks it already has and fetches only the ones the new
-version adds — nothing here computes a delta, so one published copy serves every
-client whatever version it is coming from.
+A content-addressed chunk store for the central launcher's payload updates, served as static files.
 
 ## Use
 
-Fetch through a CDN that mirrors GitHub, not from raw, which is rate-limited and
-is not a CDN:
+The store uses the [desync](https://github.com/folbricht/desync) chunk and index format: a directory of chunks named by their hash, so any static file host can serve it. A client that holds an older payload reuses the chunks it has and fetches only the ones a new version adds, so one published copy serves every client whatever version it starts from. `v1.caibx` and `v2.caibx` are fixtures, two payloads that differ by one byte.
 
-    central-launcher update <index> <dest> <seed> \
-      https://cdn.jsdelivr.net/gh/V-Sekai-fire/datasource-launcher-chunks@main/main/store
+## Build and run
 
-`cdn.statically.io/gh/...` and `raw.githack.com/...` serve the same bytes and
-are the fallbacks. Measured: all three return an identical 111,894-byte chunk,
-and an update through jsDelivr completes in about a second.
+[transport-central-launcher](https://github.com/V-Sekai-fire/transport-central-launcher) updates from this store. Fetch through a CDN that mirrors this repository rather than from raw file hosting, which is rate-limited:
 
-`v1.caibx` and `v2.caibx` are fixtures: two 20 MB payloads differing by one
-byte. Extracting v2 with v1 as the seed takes 294 of 295 chunks from the seed
-and one from here.
+```sh
+central-launcher update <index> <dest> <seed> https://cdn.jsdelivr.net/gh/V-Sekai-fire/datasource-launcher-chunks/store
+```
+
+## Licence
+
+`CITATION.cff` records the licence as MIT. There is no `LICENSE` file.
