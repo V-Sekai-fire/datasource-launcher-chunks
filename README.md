@@ -16,4 +16,4 @@ central-launcher update <index> <dest> <seed> https://cdn.jsdelivr.net/gh/V-Seka
 
 ## Licence
 
-`CITATION.cff` records the licence as MIT. There is no `LICENSE` file.
+MIT. See [LICENSE](LICENSE). `CITATION.cff` records the licence as MIT.
